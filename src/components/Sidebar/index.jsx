@@ -7,7 +7,8 @@ import "./style.scss";
 
 class Sidebar extends Component {
 	state = {
-		genres: []
+		genres: [],
+		errorMessage: ""
 	};
 
 	async componentWillMount() {
@@ -17,7 +18,7 @@ class Sidebar extends Component {
 
 			this.setState({genres});
 		} catch (error) {
-			console.log(error);
+			this.setState({errorMessage: error.data.error});
 		}
 	}
 
