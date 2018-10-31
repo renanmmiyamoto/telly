@@ -26,6 +26,11 @@ body {
 		display: flex;
 		flex: 1;
 		overflow-x: hidden;
+
+		> section {
+			width: 80vw;
+			max-width: 80vw;
+		}
 	}
 }
 
@@ -33,7 +38,11 @@ img {
 	max-width: 100%;
 }
 
-a {
+a,
+button {
+	background: transparent;
 	text-decoration: none;
+	border: 0;
 	outline: 0;
+	cursor: pointer;
 }

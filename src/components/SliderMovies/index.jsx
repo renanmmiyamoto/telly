@@ -6,7 +6,10 @@ import "./style.scss";
 class SliderMovies extends Component {
 	state = {
 		listMovies: [],
-		errorMessage: ""
+		errorMessage: "",
+		translateNav: 0,
+		widthActions: 0,
+		leftLayer: 0
 	};
 
 	async componentWillMount() {
@@ -24,6 +27,16 @@ class SliderMovies extends Component {
 			}));
 
 			this.setState({listMovies});
+
+			let widthActions =
+				parseInt((window.outerWidth * 0.8) / 205) * 205 - 5;
+			let leftLayer =
+				parseInt((window.outerWidth * 0.8) / 205) * 205 + 30;
+
+			this.setState({
+				widthActions,
+				leftLayer
+			});
 		} catch (error) {
 			this.setState({
 				errorMessage:
@@ -32,23 +45,82 @@ class SliderMovies extends Component {
 		}
 	}
 
+	prevMovie = e => {
+		const {translateNav} = this.state;
+
+		const newTranslate = translateNav + 205;
+
+		if (newTranslate <= 0) {
+			if (e.target.classList.contains("disabled")) {
+				e.target.classList.remove("disabled");
+			}
+
+			this.setState({translateNav: newTranslate});
+		} else {
+			e.target.classList.add("disabled");
+		}
+	};
+
+	nextMovie = e => {
+		const {translateNav} = this.state;
+
+		const newTranslate = translateNav - 205;
+
+		const maxTranslate =
+			205 *
+			(this.state.listMovies.length -
+				parseInt((window.outerWidth * 0.8) / 205)) *
+			-1;
+
+		if (newTranslate >= maxTranslate) {
+			if (e.target.classList.contains("disabled")) {
+				e.target.classList.remove("disabled");
+			}
+			this.setState({translateNav: newTranslate});
+		} else {
+			e.target.classlist.add("disabled");
+		}
+	};
+
 	render() {
 		return (
-			<section className="slider-movies">
+			<article className={`slider-movies ${this.props.className}`}>
 				<h2>{this.props.title}</h2>
 
-				<nav>
-					<div>
-						<button className="btn-prev">
-							<FaAngleLeft />
-						</button>
-						<button className="btn-next">
-							<FaAngleRight />
-						</button>
-					</div>
+				<div
+					className="actions"
+					style={{
+						width: `${this.state.widthActions}px`
+					}}
+				>
+					<button
+						className="btn-prev"
+						onClick={e => {
+							e.persist();
+							this.prevMovie(e);
+						}}
+					>
+						<FaAngleLeft />
+					</button>
 
+					<button
+						className="btn-next"
+						onClick={e => {
+							e.persist();
+							this.nextMovie(e);
+						}}
+					>
+						<FaAngleRight />
+					</button>
+				</div>
+
+				<nav
+					style={{
+						transform: `translateX(${this.state.translateNav}px)`
+					}}
+				>
 					{this.state.listMovies.map(movie => (
-						<article>
+						<div className="item-movie" key={movie.id}>
 							<div
 								className="image"
 								style={{
@@ -71,12 +143,19 @@ class SliderMovies extends Component {
 									{movie.vote_average}
 								</span>
 							</div>
-						</article>
+						</div>
 					))}
 				</nav>
 
+				<div
+					className="layer"
+					style={{
+						left: `${this.state.leftLayer}px`
+					}}
+				/>
+
 				{this.state.errorMessage && <p>{this.state.errorMessage}</p>}
-			</section>
+			</article>
 		);
 	}
 }

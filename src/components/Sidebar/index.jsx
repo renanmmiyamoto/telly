@@ -14,7 +14,18 @@ class Sidebar extends Component {
 	async componentWillMount() {
 		try {
 			const response = await apiMovies.get("/genre/movie/list");
-			const {genres} = response.data;
+
+			const genres = response.data.genres.filter(genre => {
+				return (
+					genre.id !== 14 &&
+					genre.id !== 36 &&
+					genre.id !== 10402 &&
+					genre.id !== 10770 &&
+					genre.id !== 37 &&
+					genre.id !== 99 &&
+					genre.id !== 10749
+				);
+			});
 
 			this.setState({genres});
 		} catch (error) {
@@ -24,7 +35,7 @@ class Sidebar extends Component {
 
 	render() {
 		return (
-			<aside>
+			<aside className={this.props.className}>
 				<img src={logo} alt="Logo Telly" />
 
 				<nav>

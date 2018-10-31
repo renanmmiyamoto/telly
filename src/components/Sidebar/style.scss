@@ -1,23 +1,28 @@
 aside {
 	background: #131c25;
 	position: relative;
-	max-width: 20vw;
+	width: 0;
 	max-height: 100vh;
 	flex: 1;
 	display: flex;
 	flex-direction: column;
 	justify-content: flex-start;
 	overflow-y: auto;
+	transition: 0.4s ease-in-out;
 
 	img {
 		display: block;
 		width: 70px;
 		align-self: flex-start;
-		margin: 20px auto 30px;
+		margin: auto;
 	}
 
 	nav {
 		margin: 30px 0;
+		opacity: 0;
+		visibility: hidden;
+		transform: translateX(-30px);
+		transition: 0.4s 0.4s ease-in-out;
 
 		h2 {
 			font-size: 14px;
@@ -36,8 +41,9 @@ aside {
 			font-weight: 700;
 			text-transform: uppercase;
 			letter-spacing: 1px;
-			padding: 10px 50px;
-			margin: 10px 0;
+			padding: 7px 50px;
+			margin: 7px 0;
+			transition: 0.4s ease-in-out;
 
 			&::before {
 				content: "";
@@ -65,11 +71,26 @@ aside {
 			}
 		}
 
-		&:last-of-type a {
-			font-size: 13px;
-			color: rgba(#fff, 0.6);
-			text-transform: none;
-			padding: 5px 50px;
+		&:last-of-type {
+			transition-delay: 0.6s;
+
+			a {
+				font-size: 13px;
+				color: rgba(#fff, 0.6);
+				text-transform: none;
+				padding: 5px 50px;
+			}
+		}
+	}
+
+	&.loaded {
+		width: 20vw;
+		max-width: 20vw;
+
+		nav {
+			opacity: 1;
+			visibility: visible;
+			transform: translateX(0);
 		}
 	}
 }
