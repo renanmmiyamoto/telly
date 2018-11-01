@@ -3,7 +3,7 @@ import Sidebar from "../../components/Sidebar";
 import Loading from "../../components/Loading";
 import SliderMovies from "../../components/SliderMovies";
 
-class Home extends Component {
+class Discover extends Component {
 	state = {
 		loading: true
 	};
@@ -42,4 +42,4 @@ class Home extends Component {
 	}
 }
 
-export default Home;
+export default Discover;

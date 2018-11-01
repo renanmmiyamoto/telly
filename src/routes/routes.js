@@ -1,8 +1,8 @@
-import Home from "../pages/Home";
+import Discover from "../pages/Discover";
 
 export const publicRoutes = [
 	{
 		path: "/",
-		component: Home
+		component: Discover
 	}
 ];

@@ -19,6 +19,11 @@ body {
 	#root {
 		display: flex;
 		flex: 1;
+
+		> div {
+			display: flex;
+			flex: 1;
+		}
 	}
 
 	main {

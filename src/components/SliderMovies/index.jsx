@@ -51,13 +51,13 @@ class SliderMovies extends Component {
 		const newTranslate = translateNav + 205;
 
 		if (newTranslate <= 0) {
-			if (e.target.classList.contains("disabled")) {
-				e.target.classList.remove("disabled");
+			if (e.target.closest("button").classList.contains("disabled")) {
+				e.target.closest("button").classList.remove("disabled");
 			}
 
 			this.setState({translateNav: newTranslate});
 		} else {
-			e.target.classList.add("disabled");
+			e.target.closest("button").add("disabled");
 		}
 	};
 
@@ -73,12 +73,12 @@ class SliderMovies extends Component {
 			-1;
 
 		if (newTranslate >= maxTranslate) {
-			if (e.target.classList.contains("disabled")) {
-				e.target.classList.remove("disabled");
+			if (e.target.closest("button").classList.contains("disabled")) {
+				e.target.closest("button").classList.remove("disabled");
 			}
 			this.setState({translateNav: newTranslate});
 		} else {
-			e.target.classlist.add("disabled");
+			e.target.closest("button").classList.add("disabled");
 		}
 	};
 
@@ -94,7 +94,7 @@ class SliderMovies extends Component {
 					}}
 				>
 					<button
-						className="btn-prev"
+						className="btn-prev disabled"
 						onClick={e => {
 							e.persist();
 							this.prevMovie(e);

@@ -42,7 +42,7 @@ class Sidebar extends Component {
 					<h2>Browse Telly</h2>
 
 					<Link to="/">Discover</Link>
-					<Link to="/">TV & Movies</Link>
+					<Link to="/">TV</Link>
 					<Link to="/">Popular Clips</Link>
 					<Link to="/">Watch Later</Link>
 				</nav>
