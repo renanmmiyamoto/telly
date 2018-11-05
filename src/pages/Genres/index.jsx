@@ -2,8 +2,9 @@ import React, {Component} from "react";
 import Sidebar from "../../components/Sidebar";
 import Loading from "../../components/Loading";
 import SliderMovies from "../../components/SliderMovies";
+import {setTimeout} from "core-js";
 
-class Discover extends Component {
+class Genres extends Component {
 	state = {
 		loading: true
 	};
@@ -33,7 +34,8 @@ class Discover extends Component {
 							sort_by: "popularity.desc",
 							include_adult: "false",
 							include_video: "false",
-							page: "1"
+							page: "1",
+							with_genres: this.props.match.params.id
 						}}
 						title="Recommended For You"
 						className={!this.state.loading ? "loaded" : ""}
@@ -48,4 +50,4 @@ class Discover extends Component {
 	}
 }
 
-export default Discover;
+export default Genres;

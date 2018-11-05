@@ -79,6 +79,12 @@ aside {
 				color: rgba(#fff, 0.6);
 				text-transform: none;
 				padding: 5px 50px;
+
+				&:hover,
+				&:focus,
+				&.current {
+					color: #65d5fa;
+				}
 			}
 		}
 	}

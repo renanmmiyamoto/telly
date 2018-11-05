@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 import apiMovies from "../../services/api";
 
 import logo from "../../images/logo.png";
@@ -41,19 +41,32 @@ class Sidebar extends Component {
 				<nav>
 					<h2>Browse Telly</h2>
 
-					<Link to="/">Discover</Link>
-					<Link to="/">TV</Link>
-					<Link to="/">Popular Clips</Link>
-					<Link to="/">Watch Later</Link>
+					<NavLink to="/" exact activeClassName="current">
+						Discover
+					</NavLink>
+					<NavLink to="/tv" exact activeClassName="current">
+						TV
+					</NavLink>
+					<NavLink to="/popular" exact activeClassName="current">
+						Popular Clips
+					</NavLink>
+					<NavLink to="/watch-list" exact activeClassName="current">
+						Watch Later
+					</NavLink>
 				</nav>
 
 				<nav>
 					<h2>Categories</h2>
 
 					{this.state.genres.map(genre => (
-						<Link key={genre.id} to="">
+						<NavLink
+							key={genre.id}
+							to={`/genres/${genre.id}`}
+							exact
+							activeClassName="current"
+						>
 							{genre.name}
-						</Link>
+						</NavLink>
 					))}
 				</nav>
 			</aside>

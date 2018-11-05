@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import {Link} from "react-router-dom";
 import {FaAngleLeft, FaAngleRight, FaStar} from "react-icons/fa";
 import apiMovies from "../../services/api";
 import "./style.scss";
@@ -43,6 +44,10 @@ class SliderMovies extends Component {
 					"Não foi possível carregar os filmes, tente novamente mais tarde."
 			});
 		}
+	}
+
+	componentWillUnmount() {
+		document.querySelector(".slider-movies").classList.add("unmount");
 	}
 
 	prevMovie = e => {
@@ -120,7 +125,11 @@ class SliderMovies extends Component {
 					}}
 				>
 					{this.state.listMovies.map(movie => (
-						<div className="item-movie" key={movie.id}>
+						<Link
+							to={`movie/${movie.id}`}
+							className="item-movie"
+							key={movie.id}
+						>
 							<div
 								className="image"
 								style={{
@@ -143,7 +152,7 @@ class SliderMovies extends Component {
 									{movie.vote_average}
 								</span>
 							</div>
-						</div>
+						</Link>
 					))}
 				</nav>
 
