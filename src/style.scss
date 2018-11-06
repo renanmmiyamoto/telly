@@ -35,6 +35,8 @@ body {
 		> section {
 			width: 80vw;
 			max-width: 80vw;
+			max-height: 100vh;
+			overflow-y: auto;
 		}
 	}
 }
